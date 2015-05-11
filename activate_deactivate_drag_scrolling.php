@@ -3,7 +3,7 @@
 Plugin Name: Activate/Deactivate Google map
 Plugin URI: http://coderspress.com/
 Description: Activates or Deactivates your Homepage (new)Google Map & Search Results map.
-Version: 2015.05.11
+Version: 2015.0511
 Updated: 11th May 2015
 Author: sMarty 
 Author URI: http://coderspress.com
