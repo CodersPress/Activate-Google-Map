@@ -3,8 +3,8 @@
 Plugin Name: Activate/Deactivate Google map
 Plugin URI: http://coderspress.com/
 Description: Activates or Deactivates your Homepage (new)Google Map & Search Results map.
-Version: 2015.0511
-Updated: 11th May 2015
+Version: 2015.0624
+Updated: 24th June 2015
 Author: sMarty 
 Author URI: http://coderspress.com
 WP_Requires: 3.8.1
@@ -266,30 +266,35 @@ function runOverlay() {
             left: 0,
             display: 'none',
             zIndex: 1
-        }).attr('id', 'overlay');
-       jQuery("#wlt_childtheme_map, #wlt_google_map_wrapper").append(d);
+        }).attr('id', 'map_overlay');
+       jQuery("#wlt_childtheme_map, #wlt_google_map").append(d);
     }
-    if (jQuery('#overlay').length === 0) {
+    if (jQuery('#map_overlay').length == 0) {
         create_overlay(jQuery);
     }
-    jQuery('#overlay').fadeIn('fast');
+    jQuery('#map_overlay').fadeIn('fast');
     var mClass = 'inactive';
     var mTitle = "<?php echo get_option( 'ad_activate_text' ); ?>";
-    var mButton = jQuery('<div class="m-button ' + mClass + '">' + mTitle + '</div>').appendTo("#wlt_childtheme_map, #wlt_google_map_wrapper");
+    var mButton = jQuery('<div class="m-button ' + mClass + '">' + mTitle + '</div>').appendTo("#wlt_childtheme_map, #wlt_google_map");
     mButton.click(function () {
         if (jQuery(this).hasClass('active')) {
             jQuery(this).removeClass('active').addClass('inactive').text("<?php echo get_option( 'ad_activate_text' ); ?>");
-            jQuery('#overlay').fadeIn('fast');
+            jQuery('#map_overlay').fadeIn('fast');
         } else {
             jQuery(this).removeClass('inactive').addClass('active').text("<?php echo get_option( 'ad_deactivate_text' ); ?>");
-            jQuery('#overlay').fadeOut('fast');
+            jQuery('#map_overlay').fadeOut('fast');
         }
     });
 };
 var mobileOnly = "<?php echo get_option( 'mobile_only' ); ?>";
+
+setTimeout(function(){ 
+
 if( mobileOnly === "yes") {
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { runOverlay(); }
 } else { runOverlay(); }
+
+}, 3000);
 </script>
 <?php
 }
